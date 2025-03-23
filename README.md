@@ -2,14 +2,14 @@
 
 [![pub package](https://img.shields.io/pub/v/jp_transliterate.svg)](https://pub.dev/packages/jp_transliterate)
 
-A Flutter plugin that converts Japanese Kanji text into Furigana and Romaji. This is useful for language learners, reading assistance, and applications that require phonetic guides for Japanese text.
+A Flutter plugin that converts Japanese Kanji into Furigana & Romaji, aiding language learners, reading assistance, and apps needing phonetic guides.
 
 ![](./Screenshot.png)
 
 ## Install
 ```yaml
 dependencies:
-  jp_transliterate: ^0.0.1
+  jp_transliterate: ^1.0.0
 ```
 
 ## Example
@@ -21,11 +21,10 @@ dependencies:
 
 ## Features
 
-- [x] Transliterate kanji to hiragana.
-- [x] Transliterate kanji to katakana.
-- [x] Transliterate kanji to romaji.
+- [x] Transliterate kanji to hiragana, katakana and romaji.
 - [x] Transliterate kanji to list of words.
 - [x] Transliterate hiragana to katakana and vice versa.
+- [x] Transliterate katakana to romaji.
 - [x] A TransliterationText widget that presents text with transliteration annotations positioned above.
 
 ## Roadmap

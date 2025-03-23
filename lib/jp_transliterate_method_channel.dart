@@ -40,11 +40,12 @@ class MethodChannelJpTransliterate extends JpTransliteratePlatform {
     if (kanji.isEmpty) {
       return [
         TransliterationData(
-        kanji: kanji,
-        romaji: kanji,
-        hiragana: kanji,
-        katakana: kanji,
-      ),];
+          kanji: kanji,
+          romaji: kanji,
+          hiragana: kanji,
+          katakana: kanji,
+        ),
+      ];
     }
     final words = await methodChannel.invokeMethod('transliterateWords', {
       'kanji': kanji,
@@ -60,5 +61,15 @@ class MethodChannelJpTransliterate extends JpTransliteratePlatform {
         katakana: data?['katakana'] ?? "",
       );
     }).toList();
+  }
+
+  @override
+  Future<String> katakanaToRomaji({
+    required String katakana,
+  }) async {
+    final romaji = await methodChannel.invokeMethod('katakanaToRomaji', {
+      'katakana': katakana,
+    });
+    return romaji ?? '';
   }
 }

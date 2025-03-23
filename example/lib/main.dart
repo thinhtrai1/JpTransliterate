@@ -14,7 +14,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _controller = TextEditingController(text: '日本の文化は長い歴史の中で発展してきました。京都や奈良には、昔の建築や芸術が多く残っています。伝統的な祭りや茶道、書道なども日本の文化を代表するものです。');
+  final _controller = TextEditingController(
+      text: '日本の文化は長い歴史の中で発展してきました。京都や奈良には、昔の建築や芸術が多く残っています。伝統的な祭りや茶道、書道なども日本の文化を代表するものです。');
   TransliterationData? _transliterationData;
   List<TransliterationData>? _transliterationWords;
 

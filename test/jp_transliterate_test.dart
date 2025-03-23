@@ -23,6 +23,11 @@ class MockJpTransliteratePlatform
   Future<List<TransliterationData>> transliterateWords({required String kanji}) {
     throw UnimplementedError();
   }
+
+  @override
+  Future<String> katakanaToRomaji({required String katakana}) {
+    throw UnimplementedError();
+  }
 }
 
 void main() {

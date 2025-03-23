@@ -34,4 +34,11 @@ class JpTransliterate {
       return (code >= 0x3041 && code <= 0x3096) ? String.fromCharCode(code + 0x60) : char;
     }).join('');
   }
+
+  /// Transliterates the given katakana to romaji.
+  static Future<String> katakanaToRomaji({
+    required String katakana,
+  }) {
+    return JpTransliteratePlatform.instance.katakanaToRomaji(katakana: katakana);
+  }
 }

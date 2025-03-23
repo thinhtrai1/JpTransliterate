@@ -35,4 +35,10 @@ abstract class JpTransliteratePlatform extends PlatformInterface {
   }) {
     throw UnimplementedError('transliterate() has not been implemented.');
   }
+
+  Future<String> katakanaToRomaji({
+    required String katakana,
+  }) {
+    throw UnimplementedError('transliterate() has not been implemented.');
+  }
 }
