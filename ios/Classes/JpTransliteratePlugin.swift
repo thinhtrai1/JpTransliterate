@@ -76,33 +76,33 @@ public class JpTransliteratePlugin: NSObject, FlutterPlugin {
         ]
     }
 
-private func transliterateWords(_ input: String) -> [[String:Any]] {
-    let trimmed: String = input.trimmingCharacters(in: .whitespacesAndNewlines)
-    let tokenizer: CFStringTokenizer =
-    CFStringTokenizerCreate(kCFAllocatorDefault,
-                            trimmed as CFString,
-                            CFRangeMake(0, trimmed.utf16.count),
-                            kCFStringTokenizerUnitWordBoundary,
-                            Locale(identifier: "ja") as CFLocale)
-    var words: [[String: Any]] = []
-    while !CFStringTokenizerAdvanceToNextToken(tokenizer).isEmpty {
-        let tokenRomaji = CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription) as? String
-        let tokenKatakana = tokenRomaji.map { $0.mutableCopy() } as? NSMutableString ?? NSMutableString()
-        let tokenHiragana = tokenRomaji.map { $0.mutableCopy() } as? NSMutableString ?? NSMutableString()
-        CFStringTransform(tokenKatakana, nil, kCFStringTransformLatinKatakana, false)
-        CFStringTransform(tokenHiragana, nil, kCFStringTransformLatinHiragana, false)
-        let kanji = getCurrentToken(in: input, tokenizer: tokenizer)
-        words.append(
-            [
-                "kanji": kanji,
-                "romaji": tokenRomaji?.replacingOccurrences(of: "｡", with: ".").replacingOccurrences(of: "､", with: ",") ?? "",
-                "katakana": (tokenKatakana as String).replacingOccurrences(of: "｡", with: "。").replacingOccurrences(of: "､", with: "、"),
-                "hiragana": (tokenHiragana as String).replacingOccurrences(of: "｡", with: "。").replacingOccurrences(of: "､", with: "、"),
-            ]
-        )
+    private func transliterateWords(_ input: String) -> [[String:Any]] {
+        let trimmed: String = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        let tokenizer: CFStringTokenizer =
+        CFStringTokenizerCreate(kCFAllocatorDefault,
+                                trimmed as CFString,
+                                CFRangeMake(0, trimmed.utf16.count),
+                                kCFStringTokenizerUnitWordBoundary,
+                                Locale(identifier: "ja") as CFLocale)
+        var words: [[String: Any]] = []
+        while !CFStringTokenizerAdvanceToNextToken(tokenizer).isEmpty {
+            let tokenRomaji = CFStringTokenizerCopyCurrentTokenAttribute(tokenizer, kCFStringTokenizerAttributeLatinTranscription) as? String
+            let tokenKatakana = tokenRomaji.map { $0.mutableCopy() } as? NSMutableString ?? NSMutableString()
+            let tokenHiragana = tokenRomaji.map { $0.mutableCopy() } as? NSMutableString ?? NSMutableString()
+            CFStringTransform(tokenKatakana, nil, kCFStringTransformLatinKatakana, false)
+            CFStringTransform(tokenHiragana, nil, kCFStringTransformLatinHiragana, false)
+            let kanji = getCurrentToken(in: input, tokenizer: tokenizer)
+            words.append(
+                [
+                    "kanji": kanji,
+                    "romaji": tokenRomaji?.replacingOccurrences(of: "｡", with: ".").replacingOccurrences(of: "､", with: ",") ?? "",
+                    "katakana": (tokenKatakana as String).replacingOccurrences(of: "｡", with: "。").replacingOccurrences(of: "､", with: "、"),
+                    "hiragana": (tokenHiragana as String).replacingOccurrences(of: "｡", with: "。").replacingOccurrences(of: "､", with: "、"),
+                ]
+            )
+        }
+        return words
     }
-    return words
-}
 
     private func getCurrentToken(in text: String, tokenizer: CFStringTokenizer) -> String {
         let range = CFStringTokenizerGetCurrentTokenRange(tokenizer)
