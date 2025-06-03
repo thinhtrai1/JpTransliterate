@@ -9,7 +9,7 @@ A Flutter plugin that converts Japanese Kanji into Furigana & Romaji, aiding lan
 ## Install
 ```yaml
 dependencies:
-  jp_transliterate: ^1.0.1
+  jp_transliterate: ^1.0.2
 ```
 
 ## Example
