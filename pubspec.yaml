@@ -1,6 +1,6 @@
 name: jp_transliterate
-description: "A Flutter plugin that converts Japanese Kanji into Furigana & Romaji, aiding language learners, reading assistance, and apps needing phonetic guides."
-version: 1.0.2
+description: "A Flutter plugin that converts Japanese kanji into kana (hiragana and katakana) and romaji, supporting academic apps, translation apps, kanji reading and writing support features, phonetic annotation, or search queries like those in Elasticsearch."
+version: 1.0.3
 homepage: https://github.com/thinhtrai1/JpTransliterate
 
 environment:

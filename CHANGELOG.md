@@ -9,3 +9,8 @@ Completed.
 ## 1.0.2
 
 Fix bug on android in release mode.
+
+## 1.0.3
+
+- Update README.
+- Add features `isKanji`, `isHiragana`, `isKatakana`.

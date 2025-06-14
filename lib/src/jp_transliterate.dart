@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:jp_transliterate/jp_transliterate.dart';
 
 /// The main class of the package, which provides the main functionality of the package.
@@ -84,5 +85,51 @@ class JpTransliterate {
       'katakana': katakana,
     });
     return romaji ?? '';
+  }
+
+  /// Check if the [input] is predominantly kanji.
+  ///
+  /// The [confidenceThreshold] is a value between 0 and 1 that determines how many characters must be kanji to consider the input as kanji.
+  static bool isKanji({
+    required String input,
+    double confidenceThreshold = 0.5,
+  }) {
+    return _check(input, confidenceThreshold, 0x4e00, 0x9faf);
+  }
+
+  /// Check if the [input] is predominantly hiragana.
+  ///
+  /// The [confidenceThreshold] is a value between 0 and 1 that determines how many characters must be hiragana to consider the input as hiragana.
+  static bool isHiragana({
+    required String input,
+    double confidenceThreshold = 0.5,
+  }) {
+    return _check(input, confidenceThreshold, 0x3041, 0x3096);
+  }
+
+  /// Check if the [input] is predominantly katakana.
+  ///
+  /// The [confidenceThreshold] is a value between 0 and 1 that determines how many characters must be katakana to consider the input as katakana.
+  static bool isKatakana({
+    required String input,
+    double confidenceThreshold = 0.5,
+  }) {
+    return _check(input, confidenceThreshold, 0x30a1, 0x30fc);
+  }
+
+  static bool _check(String input, double confidenceThreshold, int start, int end) {
+    int total = 0;
+    int match = 0;
+    for (final char in input.characters) {
+      final code = char.runes.first;
+      // space and full-width space
+      if (code == 0x0020 || code == 0x3000) continue;
+      total++;
+      if (start <= code && code <= end) {
+        match++;
+      }
+    }
+    if (total == 0) return false;
+    return match >= total * confidenceThreshold;
   }
 }
