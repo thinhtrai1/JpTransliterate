@@ -2,9 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:jp_transliterate/jp_transliterate.dart';
 
 /// A widget that presents text alongside its transliteration, with subtle annotations elegantly positioned above—similar to Ruby Text in HTML.
-class TransliterationText extends StatelessWidget {
+class FuriganaText extends StatelessWidget {
   /// Creates a widget that presents text alongside its transliteration, with subtle annotations elegantly positioned above—similar to Ruby Text in HTML.
-  const TransliterationText({
+  const FuriganaText({
     Key? key,
     required this.transliterations,
     this.style,
@@ -43,18 +43,18 @@ class TransliterationText extends StatelessWidget {
               style: style,
             );
           }
-          final children = <Widget>[];
-          if (e.hiragana.isNotEmpty && e.hiragana != e.kanji) {
-            children.add(Text(rubyTextTransform?.call(e) ?? e.hiragana, style: rubyStyle));
-          }
-          if (spacing != null) {
-            children.add(SizedBox(height: spacing));
-          }
-          children.add(Text(text, style: style));
+          final ruby = rubyTextTransform?.call(e) ?? e.hiragana;
+          final child = Text(text, style: style);
           return WidgetSpan(
-            child: Column(
-              children: children,
-            ),
+            child: ruby.isNotEmpty && ruby != e.kanji
+                ? Column(
+                    children: [
+                      Text(ruby, style: rubyStyle),
+                      if (spacing != null) SizedBox(height: spacing),
+                      child,
+                    ],
+                  )
+                : child,
           );
         }).toList(),
       ),

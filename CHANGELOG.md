@@ -14,3 +14,7 @@ Fix bug on android in release mode.
 
 - Update README.
 - Add features `isKanji`, `isHiragana`, `isKatakana`.
+
+## 1.0.4
+
+- Change `TransliterationText` to `FuriganaText`.

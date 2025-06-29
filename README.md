@@ -9,7 +9,7 @@ A Flutter plugin that converts Japanese kanji into kana (hiragana and katakana) 
 ## Install
 ```yaml
 dependencies:
-  jp_transliterate: ^1.0.3
+  jp_transliterate: ^1.0.4
 ```
 
 ## Example
@@ -30,7 +30,7 @@ dependencies:
 - [x] Transliterate hiragana to katakana and vice versa.
 - [x] Transliterate katakana to romaji.
 - [x] Check if a string is kanji, hiragana or katakana.
-- [x] A TransliterationText widget that presents text with transliteration annotations positioned above.
+- [x] A `FuriganaText` widget that presents text with transliteration annotations positioned above.
 
 ## Roadmap
 
