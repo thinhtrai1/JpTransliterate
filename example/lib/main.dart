@@ -81,9 +81,9 @@ class _MyAppState extends State<MyApp> {
                 child: Text(_transliterationData?.romaji ?? ''),
               ),
               const SizedBox(height: 8),
-              const Text('TransliterationText'),
+              const Text('FuriganaText'),
               _buildBackgroundText(
-                child: TransliterationText(
+                child: FuriganaText(
                   transliterations: _transliterationWords ?? [],
                   style: const TextStyle(fontSize: 16),
                   rubyStyle: const TextStyle(fontSize: 8),
